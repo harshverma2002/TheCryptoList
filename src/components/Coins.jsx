@@ -4,6 +4,7 @@ import {server} from '../index'
 import Loader from './Loader'
 import ErrorComponent from './ErrorComponent'
 import { Link } from 'react-router-dom'
+import Dropdown from './Dropdown'
 
 const Coins = () => {
 
@@ -44,13 +45,9 @@ const Coins = () => {
   return (
     <div>
       {loading ? <Loader/> :
-      <div className='px-16'>
-
-        <div className='flex flex-row space-x-8 pt-4'>
-          <button className='transition-all duration-300 border-2 rounded-2xl border-white py-1 px-4 text-white bg-black hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black' onClick={()=>{setCurrency('inr')}}>INR</button>
-          <button className='transition-all duration-300 border-2 rounded-2xl border-white py-1 px-4 text-white bg-black hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black' onClick={()=>{setCurrency('usd')}}>USD</button>
-          <button className='transition-all duration-300 border-2 rounded-2xl border-white py-1 px-4 text-white bg-black hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black' onClick={()=>{setCurrency('eur')}}>EUR</button>
-        </div>
+      <div className='flex flex-col items-center px-24'>
+        
+        <div className='ml-[1020px] mt-8 p-1'><Dropdown currency={currency} setCurrency={setCurrency}/></div>
 
         <div className='container flex flex-row content-center justify-center flex-wrap mt-10 px-10 '>
         {   
@@ -60,7 +57,7 @@ const Coins = () => {
         }
         </div>
 
-        <div className='container max-w-full flex flex-row overflow-auto py-8'>
+        <div className='container w-4/5 flex flex-row overflow-auto py-8'>
           {
             btn.map((item,index)=>(
               <button className ='p-2 border-2 m-2' onClick={()=>changePage(index+1)}>{index+1}</button>
